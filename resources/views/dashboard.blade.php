@@ -8,6 +8,12 @@
     </div>
 </div>
 <main class="container mx-auto" x-data="dashboard">
+    <div>
+        <div class="bg-blue-400 rounded p-2 shadow text-white text-center mb-3 cursor-pointer">
+            Start training
+        </div>
+    </div>
+
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         @include('partials/dash-card', ['icon' => 'fa-solid fa-gauge-simple-high', 'title' => 'Fastest solve', 'value' => $fastest_solve])
         @include('partials/dash-card', ['icon' => 'fa-solid fa-arrow-up-wide-short', 'title' => 'Solves today', 'value' => $solves_today])

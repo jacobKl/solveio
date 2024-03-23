@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('cubes', function (Blueprint $table) {
             $table->id();
-            $table->integer('cube_type');
+            $table->string('cube_type');
         });
     }
 

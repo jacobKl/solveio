@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\SolveController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cube;
 use App\Models\Solve;
 use App\Models\Training;
 use Carbon\Carbon;

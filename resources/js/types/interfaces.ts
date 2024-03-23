@@ -22,3 +22,9 @@ export interface SolverComponentInterface {
 
     submitSolve: Function
 }
+
+
+export interface ComponentInfo {
+    key: string
+    component: object
+}

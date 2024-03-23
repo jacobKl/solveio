@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('solves', function (Blueprint $table) {
-            //
+        Schema::table('trainings', function (Blueprint $table) {
+            $table->integer('cube_id');
+
         });
     }
 
@@ -21,8 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('solves', function (Blueprint $table) {
-            //
+        Schema::table('trainings', function (Blueprint $table) {
+            $table->dropColumn('cube_id');
+
         });
     }
 };
