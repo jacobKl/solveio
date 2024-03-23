@@ -56,7 +56,7 @@ class Api {
 
     async submitSolve(solveTime: number) {
         const { hasError, result } = await this.post(
-            'new-solve',
+            'solve',
             {
                 solveTime
             }

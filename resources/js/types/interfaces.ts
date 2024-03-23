@@ -17,6 +17,8 @@ export interface SolverComponentInterface {
     startingAt: Date
     solveFinished: boolean
     solveTime: number
+    solves: number[]
+    classes: string
 
     submitSolve: Function
 }

@@ -12,6 +12,8 @@ document.addEventListener('alpine:init', () => {
         startingAt: new Date(),
         solveFinished: false,
         solveTime: 0,
+        solves: [],
+        classes: "",
 
         async newScramble() {
             const { hasError, scramble } = await Api.newScramble();
@@ -26,7 +28,7 @@ document.addEventListener('alpine:init', () => {
             const { code } = e;
             if (code != 'Space') return;
 
-            if (!this.currentlySolving) {
+            if (!this.currentlySolving && !this.solveFinished) {
                 this.currentlySolving = true;
                 this.startingAt = new Date();
                 this.interval = setInterval(() => {
@@ -39,6 +41,8 @@ document.addEventListener('alpine:init', () => {
 
                     this.timerVal = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}:${milliseconds.toString().padStart(3, "0")}`;
                 }, 10);
+            } else if (this.solveFinished) {
+                this.solveFinished = false;
             }
         },
 
@@ -49,9 +53,12 @@ document.addEventListener('alpine:init', () => {
             if (this.currentlySolving) {
                 this.currentlySolving = false;
                 this.solveFinished = true;
-                clearInterval(this.interval);
 
+                clearInterval(this.interval);
+                this.classes = "";
                 this.submitSolve();
+            } else {
+                this.classes = "bg-green-500";
             }
         },
 

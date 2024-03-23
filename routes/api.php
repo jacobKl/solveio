@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ScrambleController\ScrambleController;
 use App\Http\Controllers\SolveController\SolveController;
+use App\Http\Middleware\EnsureTrainingInProgress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -11,4 +12,5 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/new-scramble', [ScrambleController::class, 'getScramble']);
 
-Route::post('/new-solve', [SolveController::class, 'newSolve']);
+Route::post('/solve', [SolveController::class, 'store'])
+    ->middleware(EnsureTrainingInProgress::class);

@@ -12,5 +12,6 @@ class Solve extends Model
     protected $fillable = [
         'solve_time',
         'user_id',
+        'training_id'
     ];
 }
