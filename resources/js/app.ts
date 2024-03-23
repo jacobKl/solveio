@@ -1,11 +1,12 @@
 import Alpine from 'alpinejs';
-import * as components from './components'
-import { ComponentInfo } from './types/interfaces';
+import Components from './components'
+import { Component } from './types/interfaces';
+
 
 document.addEventListener('alpine:init', () => {
-    Object.values(components).forEach((info : ComponentInfo) => {
-        const { key, component } = info;
-        Alpine.data(key, component);
+    Object.values(Components).forEach((component) => {
+        const instance = new component();
+        Alpine.data(instance.getKey(), instance.getComponent());
     })
 });
 

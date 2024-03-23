@@ -24,7 +24,7 @@ export interface SolverComponentInterface {
 }
 
 
-export interface ComponentInfo {
-    key: string
-    component: object
+export interface Component {
+    getKey: Function
+    getComponent: Function
 }
