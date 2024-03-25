@@ -14,7 +14,8 @@ class Training extends Model
     protected $fillable = [
         'ended_at',
         'user_id',
-        'has_ended'
+        'has_ended',
+        'cube_id'
     ];
 
     public function scopeTodaysNotEndedTraining(Builder $query, $userId)

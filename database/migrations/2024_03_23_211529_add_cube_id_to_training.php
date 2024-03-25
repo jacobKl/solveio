@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('trainings', function (Blueprint $table) {
-            $table->integer('cube_id');
+            $table->integer('cube_id')->nullable(true);
 
         });
     }
@@ -24,7 +24,6 @@ return new class extends Migration
     {
         Schema::table('trainings', function (Blueprint $table) {
             $table->dropColumn('cube_id');
-
         });
     }
 };

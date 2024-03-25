@@ -18,6 +18,7 @@ class Solver {
             solveTime: 0,
             solves: [],
             classes: "",
+            chosenCube: null,
 
             async newScramble() {
                 const { hasError, scramble } = await Api.newScramble();
@@ -68,6 +69,10 @@ class Solver {
 
             async submitSolve() {
                 Api.submitSolve(this.solveTime)
+            },
+
+            async chooseCube() {
+                Api.chooseCube(this.chosenCube)
             }
         });
     }

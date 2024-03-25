@@ -19,6 +19,7 @@ export interface SolverComponentInterface {
     solveTime: number
     solves: number[]
     classes: string
+    chosenCube: number|null
 
     submitSolve: Function
 }

@@ -19,6 +19,8 @@ class DashboardController extends Controller
 
     public function index(Request $request) {
         $stats = $this->dashboardService->getDashboardUserData();
-        return view('dashboard', $stats);
+
+
+        return view('dashboard', [...$stats]);
     }
 }

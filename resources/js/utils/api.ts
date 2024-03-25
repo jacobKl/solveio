@@ -1,16 +1,28 @@
-import { ApiResponse, ScrambleResponse } from './../types/interfaces';
+import { ApiResponse } from './../types/interfaces';
 
 class Api {
-    async get(url: string, queryParams: object): Promise<ApiResponse> {
+    csrfToken: string
+
+    constructor() {
+        this.csrfToken = document.querySelector('[name="csrf-token"]')?.getAttribute('content') ?? ''
+    }
+
+    async get(url: string, queryParams: object, headers: {} = {}): Promise<ApiResponse> {
         try {
-            const result = await fetch(`/api/${url}`)
+            const result = await fetch(`/api/${url}`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': this.csrfToken,
+                    ...headers
+                }
+            })
             const json = await result.json()
             return {
                 hasError: false,
                 result: json
             };
         } catch (error) {
-            console.error("Wystąpił błąd.")
+            console.log(error);
             return {
                 hasError: true,
             }
@@ -22,13 +34,15 @@ class Api {
 
         for (const [key, value] of Object.entries(body)) {
             formData.append(key, value);
-          }
+        }
 
         try {
             const result = await fetch(`/api/${url}`, {
                 method: "POST",
                 body: formData,
                 headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': this.csrfToken,
                     ...headers
                 }
             })
@@ -61,6 +75,17 @@ class Api {
                 solveTime
             }
         );
+    }
+
+    async chooseCube(cubeId: number) {
+        const { hasError, result } = await this.post('choose-cube', {
+            cube_id: cubeId
+        });
+
+        return {
+            hasError,
+            ...result
+        }
     }
 }
 
